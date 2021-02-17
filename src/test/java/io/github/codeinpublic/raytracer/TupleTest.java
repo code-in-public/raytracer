@@ -21,10 +21,12 @@ public class TupleTest
      * And a is a point
      * And a is not a vector
      */
+
     @Test
     public void creatPointTuple()
     {
-        Tuple a = new Point(4.3, -4.2, 3.1, 1.0);
+        TupleFactory tupleFactory = new TupleFactory();
+        Tuple a = tupleFactory.getTuple(4.3, -4.2, 3.1, 1.0);
 
         assertEquals(a.getX(), 4.3);
         assertEquals(a.getY(), -4.2);
