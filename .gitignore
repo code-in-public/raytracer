@@ -1,0 +1,6 @@
+.classpath
+.dir-locals.el
+.project
+.settings/
+book/
+target/
