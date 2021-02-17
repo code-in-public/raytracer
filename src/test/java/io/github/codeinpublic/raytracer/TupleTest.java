@@ -10,8 +10,6 @@ import org.junit.Test;
  */
 public class TupleTest
 {
-    private double EPSILON = 0.001;
-
     /**
      * Scenario: A tuple with w=1.0 is a point
      *   Given a ← tuple(4.3, -4.2, 3.1, 1.0)
@@ -23,7 +21,7 @@ public class TupleTest
      *     And a is not a vector
      */
     @Test
-    public void creatTupleWithWEqualOne()
+    public void createTupleWithWEqualOne()
     {
         TupleFactory tupleFactory = new TupleFactory();
         Tuple a = tupleFactory.getTuple(4.3, -4.2, 3.1, 1.0);
@@ -49,7 +47,7 @@ public class TupleTest
      *     And a is a vector
      **/
     @Test
-    public void creatTupleWithWEqualZero()
+    public void createTupleWithWEqualZero()
     {
         TupleFactory tupleFactory = new TupleFactory();
         Tuple a = tupleFactory.getTuple(4.3, -4.2, 3.1, 0.0);
@@ -63,10 +61,58 @@ public class TupleTest
         assertTrue("a is a vector", a instanceof Vector);
     }
 
+    /*
+    * Scenario: point() creates tuples with w=1
+    *   Given p ← point(4, -4, 3)
+    *     Then p = tuple(4, -4, 3, 1)
+    */
+    @Test
+    public void createPoint()
+    {
+        TupleFactory tupleFactory = new TupleFactory();
+        Point p = new Point(4.0, -4.0, 3.0);
+
+        assertEquals(p, tupleFactory.getTuple(4.0, -4.0, 3, 1));
+    }
+
+    /*
+    * Scenario: vector() creates tuples with w=0
+    *   Given v ← vector(4, -4, 3)
+    *     Then v = tuple(4, -4, 3, 0)
+    */
+    @Test
+    public void createVector()
+    {
+        TupleFactory tupleFactory = new TupleFactory();
+        Vector v = new Vector(4.0, -4.0, 3.0);
+
+        assertEquals(v, tupleFactory.getTuple(4.0, -4.0, 3.0, 0.0));
+    }
+
+    private double EPSILON = 0.00001;
+
+    /*
+     * Checks if the values are close enough
+     */
+    private boolean equalish(double value1, double value2) {
+        return Math.abs(value1 - value2) < EPSILON;
+    }
+
     /**
      * Helper function for testing floating point values are close to equal
      */
-    private boolean assertEquals(double value1, double value2) {
-        return Math.abs(value1 - value2) < EPSILON;
+    private void assertEquals(double value1, double value2) {
+        assertTrue("Values " + value1 + " and " + value2 + " are not within " + EPSILON + " of each other.", equalish(value1, value2));
+    }
+
+    /**
+     * Helper function for testing floating point values are close to equal
+     */
+    private void assertEquals(Tuple tuple1, Tuple tuple2) {
+        // Compare each of the tuple dimensions
+        assertEquals(tuple1.getX(), tuple2.getX());
+        assertEquals(tuple1.getY(), tuple2.getY());
+        assertEquals(tuple1.getZ(), tuple2.getZ());
+        assertEquals(tuple1.getW(), tuple2.getW());
     }
 }
