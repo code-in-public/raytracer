@@ -11,19 +11,19 @@ import org.junit.Test;
 public class TupleTest
 {
     private double EPSILON = 0.001;
+
     /**
      * Scenario: A tuple with w=1.0 is a point
-     * Given a ← tuple(4.3, -4.2, 3.1, 1.0)
-     * Then a.x = 4.3
-     * And a.y = -4.2
-     * And a.z = 3.1
-     * And a.w = 1.0
-     * And a is a point
-     * And a is not a vector
+     *   Given a ← tuple(4.3, -4.2, 3.1, 1.0)
+     *     Then a.x = 4.3
+     *     And a.y = -4.2
+     *     And a.z = 3.1
+     *     And a.w = 1.0
+     *     And a is a point
+     *     And a is not a vector
      */
-
     @Test
-    public void creatPointTuple()
+    public void creatTupleWithWEqualOne()
     {
         TupleFactory tupleFactory = new TupleFactory();
         Tuple a = tupleFactory.getTuple(4.3, -4.2, 3.1, 1.0);
@@ -35,6 +35,32 @@ public class TupleTest
 
         assertTrue("a is a point", a instanceof Point);
         assertFalse("a is not a vector", a instanceof Vector);
+    }
+
+    /**
+     *
+     * Scenario: A tuple with w=0 is a vector
+     *   Given a ← tuple(4.3, -4.2, 3.1, 0.0)
+     *     Then a.x = 4.3
+     *     And a.y = -4.2
+     *     And a.z = 3.1
+     *     And a.w = 0.0
+     *     And a is not a point
+     *     And a is a vector
+     **/
+    @Test
+    public void creatTupleWithWEqualZero()
+    {
+        TupleFactory tupleFactory = new TupleFactory();
+        Tuple a = tupleFactory.getTuple(4.3, -4.2, 3.1, 0.0);
+
+        assertEquals(a.getX(), 4.3);
+        assertEquals(a.getY(), -4.2);
+        assertEquals(a.getZ(), 3.1);
+        assertEquals(a.getW(), 0.0);
+
+        assertFalse("a is not a point", a instanceof Point);
+        assertTrue("a is a vector", a instanceof Vector);
     }
 
     /**
