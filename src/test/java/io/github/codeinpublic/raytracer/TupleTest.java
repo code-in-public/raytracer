@@ -89,7 +89,73 @@ public class TupleTest
         assertEquals(v, tupleFactory.getTuple(4.0, -4.0, 3.0, 0.0));
     }
 
-    private double EPSILON = 0.00001;
+    /*
+     * Scenario: Adding two tuples
+     *   Given a1 ← tuple(3, -2, 5, 1)
+     *     And a2 ← tuple(-2, 3, 1, 0)
+     *      Then a1 + a2 = tuple(1, 1, 6, 1)
+     */
+    @Test
+    public void addTwoTuples()
+    {
+        TupleFactory tupleFactory = new TupleFactory();
+        Tuple a1 = new Vector(3.0, -2.0, 5, 1);
+        Tuple a2 = new Vector(-2.0, 3.0, 1, 0);
+
+        assertEquals(Tuple.add(a1, a2), tupleFactory.getTuple(1.0, 1.0, 6.0, 1.0));
+    }
+
+    /*
+     * Scenario: Subtracting two points
+     *   Given p1 ← point(3, 2, 1)
+     *     And p2 ← point(5, 6, 7)
+     *       Then p1 - p2 = vector(-2, -4, -6)
+     */
+    @Test
+    public void subtractTwoPoints()
+    {
+        TupleFactory tupleFactory = new TupleFactory();
+        Point p1 = new Point(3.0, 2.0, 1.0);
+        Point p2 = new Point(5.0, 6.0, 7.0);
+
+        assertEquals(Point.subtract(p1, p2), new Vector(-2.0, -4.0, -6.0));
+    }
+
+    /*
+     *
+        Scenario: Subtracting a vector from a point
+        Given p ← point(3, 2, 1)
+            And v ← vector(5, 6, 7)
+        Then p - v = point(-2, -4, -6)
+
+        Scenario: Subtracting two vectors
+        Given v1 ← vector(3, 2, 1)
+            And v2 ← vector(5, 6, 7)
+        Then v1 - v2 = vector(-2, -4, -6)
+
+        Scenario: Subtracting a vector from the zero vector
+        Given zero ← vector(0, 0, 0)
+            And v ← vector(1, -2, 3)
+        Then zero - v = vector(-1, 2, -3)
+
+        Scenario: Negating a tuple
+        Given a ← tuple(1, -2, 3, -4)
+        Then -a = tuple(-1, 2, -3, 4)
+
+        Scenario: Multiplying a tuple by a scalar
+        Given a ← tuple(1, -2, 3, -4)
+        Then a * 3.5 = tuple(3.5, -7, 10.5, -14)
+
+        Scenario: Multiplying a tuple by a fraction
+        Given a ← tuple(1, -2, 3, -4)
+        Then a * 0.5 = tuple(0.5, -1, 1.5, -2)
+
+        Scenario: Dividing a tuple by a scalar
+        Given a ← tuple(1, -2, 3, -4)
+        Then a / 2 = tuple(0.5, -1, 1.5, -2)
+     */
+
+	private double EPSILON = 0.00001;
 
     /*
      * Checks if the values are close enough

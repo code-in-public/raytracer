@@ -45,4 +45,18 @@ public class Tuple
 	public void setW(double w) {
 		this.w = w;
 	}
+
+    public static Tuple add(Tuple a1, Tuple a2) {
+        return new Vector(a1.getX() + a2.getX(),
+                          a1.getY() + a2.getY(),
+                          a1.getZ() + a2.getZ(),
+                          a1.getW() + a2.getW());
+	}
+
+	public static Tuple subtract(Point a1, Point a2) {
+        return new Vector(a1.getX() - a2.getX(),
+                          a1.getY() - a2.getY(),
+                          a1.getZ() - a2.getZ(),
+                          a1.getW() - a2.getW());
+	}
 }
