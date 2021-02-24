@@ -114,46 +114,108 @@ public class TupleTest
     @Test
     public void subtractTwoPoints()
     {
-        TupleFactory tupleFactory = new TupleFactory();
         Point p1 = new Point(3.0, 2.0, 1.0);
         Point p2 = new Point(5.0, 6.0, 7.0);
 
-        assertEquals(Point.subtract(p1, p2), new Vector(-2.0, -4.0, -6.0));
+        assertEquals(Tuple.subtract(p1, p2), new Vector(-2.0, -4.0, -6.0));
     }
 
     /*
-     *
-        Scenario: Subtracting a vector from a point
-        Given p ← point(3, 2, 1)
-            And v ← vector(5, 6, 7)
-        Then p - v = point(-2, -4, -6)
-
-        Scenario: Subtracting two vectors
-        Given v1 ← vector(3, 2, 1)
-            And v2 ← vector(5, 6, 7)
-        Then v1 - v2 = vector(-2, -4, -6)
-
-        Scenario: Subtracting a vector from the zero vector
-        Given zero ← vector(0, 0, 0)
-            And v ← vector(1, -2, 3)
-        Then zero - v = vector(-1, 2, -3)
-
-        Scenario: Negating a tuple
-        Given a ← tuple(1, -2, 3, -4)
-        Then -a = tuple(-1, 2, -3, 4)
-
-        Scenario: Multiplying a tuple by a scalar
-        Given a ← tuple(1, -2, 3, -4)
-        Then a * 3.5 = tuple(3.5, -7, 10.5, -14)
-
-        Scenario: Multiplying a tuple by a fraction
-        Given a ← tuple(1, -2, 3, -4)
-        Then a * 0.5 = tuple(0.5, -1, 1.5, -2)
-
-        Scenario: Dividing a tuple by a scalar
-        Given a ← tuple(1, -2, 3, -4)
-        Then a / 2 = tuple(0.5, -1, 1.5, -2)
+     * Scenario: Subtracting a vector from a point
+     *   Given p ← point(3, 2, 1)
+     *     And v ← vector(5, 6, 7)
+     *       Then p - v = point(-2, -4, -6)
      */
+    @Test
+    public void subtractVectorFromPoint()
+    {
+        Point p = new Point(3.0, 2.0, 1.0);
+        Vector v = new Vector(5.0, 6.0, 7.0);
+
+        assertEquals(Tuple.subtract(p, v), new Point(-2.0, -4.0, -6.0));
+    }
+
+    /*
+     *  Scenario: Subtracting two vectors
+     *    Given v1 ← vector(3, 2, 1)
+     *      And v2 ← vector(5, 6, 7)
+     *        Then v1 - v2 = vector(-2, -4, -6)
+     */
+    @Test
+    public void subtractTwoVectors()
+    {
+        Vector v1 = new Vector(3.0, 2.0, 1.0);
+        Vector v2 = new Vector(5.0, 6.0, 7.0);
+
+        assertEquals(Tuple.subtract(v1, v2), new Vector(-2.0, -4.0, -6.0));
+    }
+
+    /*
+     *  Scenario: Subtracting a vector from the zero vector
+     *    Given zero ← vector(0, 0, 0)
+     *         And v ← vector(1, -2, 3)
+     *    Then zero - v = vector(-1, 2, -3)
+     */
+    @Test
+    public void subtractVectorFromZeroVector()
+    {
+        Vector zero = new Vector(0.0, 0.0, 0.0);
+        Vector v = new Vector(1.0, -2.0, 3.0);
+
+        assertEquals(Tuple.subtract(zero, v), new Vector(-1.0, 2.0, -3.0));
+    }
+
+    /*
+     *  Scenario: Negating a tuple
+     *    Given a ← tuple(1, -2, 3, -4)
+     *      Then -a = tuple(-1, 2, -3, 4)
+     */
+    @Test
+    public void negateTuple()
+    {
+        Tuple a = new Tuple(1.0, -2.0, 3.0, -4.0);
+
+        assertEquals(Tuple.negate(a), new Tuple(-1.0, 2.0, -3.0, 4.0));
+    }
+
+    /*
+     *  Scenario: Multiplying a tuple by a scalar
+     *    Given a ← tuple(1, -2, 3, -4)
+     *      Then a * 3.5 = tuple(3.5, -7, 10.5, -14)
+     */
+    @Test
+    public void multiplyTupleByScalar()
+    {
+        Tuple a = new Tuple(1.0, -2.0, 3.0, -4.0);
+
+        assertEquals(Tuple.multiply(a, 3.5), new Tuple(3.5, -7, 10.5, -14));
+    }
+
+    /*
+     *  Scenario: Multiplying a tuple by a fraction
+     *    Given a ← tuple(1, -2, 3, -4)
+     *      Then a * 0.5 = tuple(0.5, -1, 1.5, -2)
+     */
+    @Test
+    public void multiplyTupleByFraction()
+    {
+        Tuple a = new Tuple(1.0, -2.0, 3.0, -4.0);
+
+        assertEquals(Tuple.multiply(a, 0.5), new Tuple(0.5, -1, 1.5, -2));
+    }
+
+    /*
+     *  Scenario: Dividing a tuple by a scalar
+     *    Given a ← tuple(1, -2, 3, -4)
+     *      Then a / 2 = tuple(0.5, -1, 1.5, -2)
+     */
+    @Test
+    public void divideTupleByScalar()
+    {
+        Tuple a = new Tuple(1.0, -2.0, 3.0, -4.0);
+
+        assertEquals(Tuple.divide(a, 2), new Tuple(0.5, -1, 1.5, -2));
+    }
 
 	private double EPSILON = 0.00001;
 
