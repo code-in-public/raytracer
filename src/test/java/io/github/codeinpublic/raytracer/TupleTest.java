@@ -217,6 +217,41 @@ public class TupleTest
         assertEquals(Tuple.divide(a, 2), new Tuple(0.5, -1, 1.5, -2));
     }
 
+    /*
+     * Scenario: Computing the magnitude of vector(1, 0, 0)
+     *   Given v ← vector(1, 0, 0)
+     *     Then magnitude(v) = 1
+     */
+    @Test
+    public void computeMagnitudeOfXUnitVector()
+    {
+        Vector v = new Vector(1, 0, 0);
+
+        assertEquals(Tuple.magnitude(v), 1.0);
+    }
+
+    /*
+Scenario: Computing the magnitude of vector(1, 0, 0)
+  Given v ← vector(1, 0, 0)
+  Then magnitude(v) = 1
+
+Scenario: Computing the magnitude of vector(0, 1, 0)
+  Given v ← vector(0, 1, 0)
+  Then magnitude(v) = 1
+
+Scenario: Computing the magnitude of vector(0, 0, 1)
+  Given v ← vector(0, 0, 1)
+  Then magnitude(v) = 1
+
+Scenario: Computing the magnitude of vector(1, 2, 3)
+  Given v ← vector(1, 2, 3)
+  Then magnitude(v) = √14
+
+Scenario: Computing the magnitude of vector(-1, -2, -3)
+  Given v ← vector(-1, -2, -3)
+  Then magnitude(v) = √14
+     */
+
 	private double EPSILON = 0.00001;
 
     /*

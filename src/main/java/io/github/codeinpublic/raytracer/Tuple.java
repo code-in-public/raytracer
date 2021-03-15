@@ -74,4 +74,11 @@ public class Tuple
 	public static Tuple divide(Tuple a, double d) {
 		return multiply(a, 1.0/d);
 	}
+
+	public static double magnitude(Vector v) {
+		return Math.sqrt(Math.pow(v.getX(), 2) +
+						 Math.pow(v.getY(), 2) +
+						 Math.pow(v.getZ(), 2) +
+						 Math.pow(v.getW(), 2));
+	}
 }
