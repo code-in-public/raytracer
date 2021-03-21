@@ -80,5 +80,6 @@ public class Tuple
 						 Math.pow(v.getY(), 2) +
 						 Math.pow(v.getZ(), 2) +
 						 Math.pow(v.getW(), 2));
+
 	}
 }
