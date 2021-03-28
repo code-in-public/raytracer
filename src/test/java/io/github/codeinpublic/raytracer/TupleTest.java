@@ -265,37 +265,85 @@ public class TupleTest
         assertEquals(Tuple.magnitude(v), Math.sqrt(14.0));
     }
 
-/*
+    /*
+     * Scenario: Computing the magnitude of vector(-1, -2, -3)
+     *   Given v ← vector(-1, -2, -3)
+     *    Then magnitude(v) = √14
+     */
+    @Test
+    public void computeMagnitudeOfNegativeVector()
+    {
+        Vector v = new Vector(-1, -2, -3);
+        assertEquals(Tuple.magnitude(v), Math.sqrt(14.0));
+    }
 
-Scenario: Computing the magnitude of vector(-1, -2, -3)
-  Given v ← vector(-1, -2, -3)
-  Then magnitude(v) = √14
+    /*
+     * Scenario: Normalizing vector(4, 0, 0) gives (1, 0, 0)
+     *   Given v ← vector(4, 0, 0)
+     *     Then normalize(v) = vector(1, 0, 0)
+     */
+    @Test
+    public void normalizeVector()
+    {
+        Vector v = new Vector(4, 0, 0);
+        assertEquals(Tuple.normalize(v), new Vector(1, 0, 0));
+    }
 
-Scenario: Normalizing vector(4, 0, 0) gives (1, 0, 0)
-  Given v ← vector(4, 0, 0)
-  Then normalize(v) = vector(1, 0, 0)
+    /*
+     * Scenario: Normalizing vector(1, 2, 3)
+     *   Given v ← vector(1, 2, 3)
+     *                                   # vector(1/√14,   2/√14,   3/√14)
+     *   Then normalize(v) = approximately vector(0.26726, 0.53452, 0.80178)
+     */
+    @Test
+    public void normalizeComplexVector()
+    {
+        Vector v = new Vector(1, 2, 3);
+        assertEquals(Tuple.normalize(v), new Vector(0.26726, 0.53452, 0.80178));
+    }
 
-Scenario: Normalizing vector(1, 2, 3)
-  Given v ← vector(1, 2, 3)
-                                  # vector(1/√14,   2/√14,   3/√14)
-  Then normalize(v) = approximately vector(0.26726, 0.53452, 0.80178)
+    /*
+     * Scenario: The magnitude of a normalized vector
+     *  Given v ← vector(1, 2, 3)
+     *     When norm ← normalize(v)
+     *     Then magnitude(norm) = 1
+     */
+    @Test
+    public void magnitudeOfNormalizedVector()
+    {
+        Vector v = new Vector(1, 2, 3);
+        Tuple norm = Tuple.normalize(v);
+        assertEquals(Tuple.magnitude(norm), 1);
+    }
 
-Scenario: The magnitude of a normalized vector
-  Given v ← vector(1, 2, 3)
-  When norm ← normalize(v)
-  Then magnitude(norm) = 1
+    /*
+     * Scenario: The dot product of two tuples
+     *   Given a ← vector(1, 2, 3)
+     *     And b ← vector(2, 3, 4)
+     *     Then dot(a, b) = 20
+     */
+    @Test
+    public void dotProduct()
+    {
+        Vector a = new Vector(1, 2, 3);
+        Vector b = new Vector(2, 3, 4);
+        assertEquals(Vector.dot(a, b), 20);
+    }
 
-Scenario: The dot product of two tuples
-  Given a ← vector(1, 2, 3)
-    And b ← vector(2, 3, 4)
-  Then dot(a, b) = 20
-
-Scenario: The cross product of two vectors
-  Given a ← vector(1, 2, 3)
-    And b ← vector(2, 3, 4)
-  Then cross(a, b) = vector(-1, 2, -1)
-    And cross(b, a) = vector(1, -2, 1)
-    */
+    /*
+     * Scenario: The cross product of two vectors
+     *   Given a ← vector(1, 2, 3)
+     *     And b ← vector(2, 3, 4)
+     *    Then cross(a, b) = vector(-1, 2, -1)
+     *    And cross(b, a) = vector(1, -2, 1)
+     */
+    @Test
+    public void crossProduct()
+    {
+        Vector a = new Vector(1, 2, 3);
+        Vector b = new Vector(2, 3, 4);
+        assertEquals(Vector.cross(a, b), new Vector(-1, 2, -1));
+    }
 
 	private double EPSILON = 0.00001;
 
@@ -317,6 +365,7 @@ Scenario: The cross product of two vectors
      * Helper function for testing floating point values are close to equal
      */
     private void assertEquals(Tuple tuple1, Tuple tuple2) {
+        //TODO Add a null check for both Tuples
         // Compare each of the tuple dimensions
         assertEquals(tuple1.getX(), tuple2.getX());
         assertEquals(tuple1.getY(), tuple2.getY());

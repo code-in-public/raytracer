@@ -75,11 +75,15 @@ public class Tuple
 		return multiply(a, 1.0/d);
 	}
 
-	public static double magnitude(Vector v) {
-		return Math.sqrt(Math.pow(v.getX(), 2) +
-						 Math.pow(v.getY(), 2) +
-						 Math.pow(v.getZ(), 2) +
-						 Math.pow(v.getW(), 2));
+	public static double magnitude(Tuple t) {
+		return Math.sqrt(Math.pow(t.getX(), 2) +
+						 Math.pow(t.getY(), 2) +
+						 Math.pow(t.getZ(), 2) +
+						 Math.pow(t.getW(), 2));
 
+	}
+
+	public static Tuple normalize(Vector v) {
+		return Vector.divide(v, magnitude(v));
 	}
 }
