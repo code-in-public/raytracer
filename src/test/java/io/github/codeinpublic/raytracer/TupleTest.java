@@ -3,6 +3,7 @@ package io.github.codeinpublic.raytracer;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;//
 
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -10,6 +11,13 @@ import org.junit.Test;
  */
 public class TupleTest
 {
+    TupleFactory tupleFactory;
+
+    @Before
+    public void init() {
+        this.tupleFactory = new TupleFactory();
+    }
+
     /**
      * Scenario: A tuple with w=1.0 is a point
      *   Given a ← tuple(4.3, -4.2, 3.1, 1.0)
@@ -23,7 +31,6 @@ public class TupleTest
     @Test
     public void createTupleWithWEqualOne()
     {
-        TupleFactory tupleFactory = new TupleFactory();
         Tuple a = tupleFactory.getTuple(4.3, -4.2, 3.1, 1.0);
 
         assertEquals(a.getX(), 4.3);
@@ -173,9 +180,9 @@ public class TupleTest
     @Test
     public void negateTuple()
     {
-        Tuple a = new Tuple(1.0, -2.0, 3.0, -4.0);
+        Tuple a = tupleFactory.getTuple(1.0, -2.0, 3.0, -4.0);
 
-        assertEquals(Tuple.negate(a), new Tuple(-1.0, 2.0, -3.0, 4.0));
+        assertEquals(Tuple.negate(a), tupleFactory.getTuple(-1.0, 2.0, -3.0, 4.0));
     }
 
     /*
@@ -186,9 +193,9 @@ public class TupleTest
     @Test
     public void multiplyTupleByScalar()
     {
-        Tuple a = new Tuple(1.0, -2.0, 3.0, -4.0);
+        Tuple a = tupleFactory.getTuple(1.0, -2.0, 3.0, -4.0);
 
-        assertEquals(Tuple.multiply(a, 3.5), new Tuple(3.5, -7, 10.5, -14));
+        assertEquals(Tuple.multiply(a, 3.5), tupleFactory.getTuple(3.5, -7, 10.5, -14));
     }
 
     /*
@@ -199,9 +206,9 @@ public class TupleTest
     @Test
     public void multiplyTupleByFraction()
     {
-        Tuple a = new Tuple(1.0, -2.0, 3.0, -4.0);
+        Tuple a = tupleFactory.getTuple(1.0, -2.0, 3.0, -4.0);
 
-        assertEquals(Tuple.multiply(a, 0.5), new Tuple(0.5, -1, 1.5, -2));
+        assertEquals(Tuple.multiply(a, 0.5), tupleFactory.getTuple(0.5, -1, 1.5, -2));
     }
 
     /*
@@ -212,9 +219,9 @@ public class TupleTest
     @Test
     public void divideTupleByScalar()
     {
-        Tuple a = new Tuple(1.0, -2.0, 3.0, -4.0);
+        Tuple a = tupleFactory.getTuple(1.0, -2.0, 3.0, -4.0);
 
-        assertEquals(Tuple.divide(a, 2), new Tuple(0.5, -1, 1.5, -2));
+        assertEquals(Tuple.divide(a, 2), tupleFactory.getTuple(0.5, -1, 1.5, -2));
     }
 
     /*
