@@ -71,6 +71,10 @@ public abstract class Tuple {
 		return create(a.getX() * d, a.getY() * d, a.getZ() * d, a.getW() * d);
 	}
 
+	public static Tuple multiply(Tuple a1, Tuple a2) {
+		return create(a1.getX() * a2.getX(), a1.getY() * a2.getY(), a1.getZ() * a2.getZ(), a1.getW() * a2.getZ());
+	}
+
 	public static Tuple divide(Tuple a, double d) {
 		return multiply(a, 1.0 / d);
 	}

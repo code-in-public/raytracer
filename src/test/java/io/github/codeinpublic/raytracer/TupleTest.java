@@ -1,7 +1,7 @@
 package io.github.codeinpublic.raytracer;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;//
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -340,26 +340,26 @@ public class TupleTest
         assertEquals(Vector.cross(a, b), new Vector(-1, 2, -1));
     }
 
-	private double EPSILON = 0.00001;
+	private static double EPSILON = 0.00001;
 
     /*
      * Checks if the values are close enough
      */
-    private boolean equalish(double value1, double value2) {
+    public static boolean equalish(double value1, double value2) {
         return Math.abs(value1 - value2) < EPSILON;
     }
 
     /**
      * Helper function for testing floating point values are close to equal
      */
-    private void assertEquals(double value1, double value2) {
+    public static void assertEquals(double value1, double value2) {
         assertTrue("Values " + value1 + " and " + value2 + " are not within " + EPSILON + " of each other.", equalish(value1, value2));
     }
 
     /**
      * Helper function for testing floating point values are close to equal
      */
-    private void assertEquals(Tuple tuple1, Tuple tuple2) {
+    public static void assertEquals(Tuple tuple1, Tuple tuple2) {
         //TODO Add a null check for both Tuples
         // Compare each of the tuple dimensions
         assertEquals(tuple1.getX(), tuple2.getX());
