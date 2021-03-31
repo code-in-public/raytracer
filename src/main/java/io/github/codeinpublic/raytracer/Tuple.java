@@ -83,4 +83,9 @@ public abstract class Tuple {
 	public static Tuple normalize(Vector v) {
 		return Vector.divide(v, magnitude(v));
 	}
+
+	@Override
+	public String toString() {
+		return "Tuple [x=" + x + ", y=" + y + ", z=" + z + "]";
+	}
 }

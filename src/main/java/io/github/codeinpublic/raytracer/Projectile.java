@@ -5,10 +5,10 @@ package io.github.codeinpublic.raytracer;
  */
 public class Projectile
 {
-    private final Point position;
+    private final Tuple position;
     private final Tuple velocity;
 
-	public Projectile(final Point position, final Tuple velocity) {
+	public Projectile(final Tuple position, final Tuple velocity) {
 		this.position = position;
 		this.velocity = velocity;
 	}
@@ -17,7 +17,7 @@ public class Projectile
 		return velocity;
 	}
 
-	public Point getPosition() {
+	public Tuple getPosition() {
 		return position;
 	}
 }
